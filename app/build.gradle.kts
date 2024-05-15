@@ -2,10 +2,11 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("maven-publish")
 }
 
 android {
-    namespace = "com.example.moviesapp"
+    namespace = "com.example.networksdk"
     compileSdk = 34
 
     buildFeatures {
@@ -55,5 +56,5 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("androidx.fragment:fragment-ktx:1.7.0")
 
-
 }
+

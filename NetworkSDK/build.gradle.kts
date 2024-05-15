@@ -7,13 +7,15 @@ android {
     namespace = "com.example.networksdk"
     compileSdk = 34
 
+
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
         minSdk = 24
-        buildConfigField("String", "API_KEY", "\"909594533c98883408adef5d56143539\"")
+        version =
+                buildConfigField("String", "API_KEY", "\"909594533c98883408adef5d56143539\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -46,3 +48,5 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
 }
+
+
