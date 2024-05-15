@@ -1,21 +1,28 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
 
 android {
     namespace = "com.example.networksdk"
     compileSdk = 34
+    version = 1
 
+    testFixtures {
+        enable = true
+    }
 
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
+        aarMetadata {
+            minCompileSdk = 29
+        }
         minSdk = 24
-        version =
-                buildConfigField("String", "API_KEY", "\"909594533c98883408adef5d56143539\"")
+        buildConfigField("String", "API_KEY", "\"909594533c98883408adef5d56143539\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -43,10 +50,21 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
 }
 
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.rajpateln1995"
+            artifactId = "Movies-App"
+            version = "0.0.1"
 
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+}
