@@ -9,18 +9,11 @@ android {
     compileSdk = 34
     version = 1
 
-    testFixtures {
-        enable = true
-    }
-
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
-        aarMetadata {
-            minCompileSdk = 29
-        }
         minSdk = 24
         buildConfigField("String", "API_KEY", "\"909594533c98883408adef5d56143539\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
