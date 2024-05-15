@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.example.moviesapp"
     compileSdk = 34
 
@@ -53,7 +54,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("androidx.fragment:fragment-ktx:1.7.0")
-    implementation(project(":NetworkSDK"))
+    implementation("com.github.rajpateln1995:Movies-App:master-SNAPSHOT")
 
 }
 
