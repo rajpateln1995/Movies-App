@@ -9,7 +9,7 @@ pluginManagement {
 
 rootProject.name = "Movies App"
 include(":app")
-include(":NetworkSDK")
+
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)

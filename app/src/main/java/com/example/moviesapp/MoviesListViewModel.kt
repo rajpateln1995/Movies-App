@@ -49,6 +49,7 @@ class MoviesListViewModel : ViewModel() {
     private fun handleResponse(response: ApiResponse<MoviesResponse>, type: String) {
         when (response) {
             is ApiResponse.Success -> {
+                Log.d(TAG, response.data.results.toString())
                 if (type == Constants.LATEST) {
                     val newList = ArrayList<Movie>()
                     latestMoviesList.value?.let { newList.addAll(it) }

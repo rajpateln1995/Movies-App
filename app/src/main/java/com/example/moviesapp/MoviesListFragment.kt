@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.databinding.FragmentLatestMoviesBinding
 
@@ -37,7 +38,7 @@ class MoviesListFragment(private val type: String) : Fragment(), MoviesListener 
         if (type == Constants.LATEST) {
             val adapter = MoviesAdapter(requireContext(), this)
             binding.rvMoviesList.adapter = adapter
-            binding.rvMoviesList.layoutManager = LinearLayoutManager(requireContext())
+            binding.rvMoviesList.layoutManager = GridLayoutManager(requireContext(), 2)
             viewModel.latestMoviesList.observe(viewLifecycleOwner) {
                 adapter.submitList(it)
             }
@@ -46,7 +47,7 @@ class MoviesListFragment(private val type: String) : Fragment(), MoviesListener 
         if (type == Constants.POPULAR) {
             val adapter = MoviesAdapter(requireContext(), this)
             binding.rvMoviesList.adapter = adapter
-            binding.rvMoviesList.layoutManager = LinearLayoutManager(requireContext())
+            binding.rvMoviesList.layoutManager = GridLayoutManager(requireContext(), 2)
             viewModel.popularMoviesList.observe(viewLifecycleOwner) {
                 adapter.submitList(it)
             }

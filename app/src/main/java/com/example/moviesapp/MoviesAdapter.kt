@@ -7,8 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.moviesapp.databinding.MovieItemCardBinding
 import com.example.networksdk.data.Movie
+import com.example.networksdk.services.MovieService
 
 class MoviesAdapter(private val context: Context, private val listener: MoviesListener) :
         ListAdapter<Movie, MovieViewHolder>(MoviesDiffCallback()) {
@@ -21,7 +24,7 @@ class MoviesAdapter(private val context: Context, private val listener: MoviesLi
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), context)
         if (position == currentList.size - 1) {
             listener.loadMoreData()
         }
@@ -30,8 +33,13 @@ class MoviesAdapter(private val context: Context, private val listener: MoviesLi
 
 class MovieViewHolder(private val binding: MovieItemCardBinding) : RecyclerView.ViewHolder(binding
         .root) {
-    fun bind(data: Movie) {
-        binding.tvMovieName.text = data.title
+    fun bind(data: Movie, context: Context) {
+        binding.tvName.text = data.title
+        binding.ratingBar.rating = (data.voteAverage / 2).toFloat()
+        Glide.with(context)
+                .load(data.posterPath?.let { MovieService.getImageUrl(it) })
+                .apply(RequestOptions().optionalCenterCrop())
+                .into(binding.ivPoster)
     }
 }
 
